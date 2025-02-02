@@ -3,6 +3,7 @@ import axios from "axios";
 import "./index.scss";
 import RatingStars from "../../components/ratingstarts";
 import ProductColorsSlider from "../../components/coloeslider";
+import { Link, NavLink } from "react-router-dom";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -86,41 +87,16 @@ function Products() {
                 </div>
 
                 <div className="products_page__item_details_bottom">
-                  <div className="product-colors">
-                    {product.colors && product.colors.length > 6 ? (
-                      <div className="mini_colors">
-                        {product.colors.slice(0, 6).map((color, index) => (
-                          <div key={index} className="mini_colors__item">
-                            <img
-                              src={color.colorImages[0]}
-                              alt={color.colorName}
-                              className="color-image"
-                            />
-                          </div>
-                        ))}
-                        <span>...</span>
-                      </div>
-                    ) : product.colors && product.colors.length > 1 ? (
-                      <div className="mini_colors">
-                        {product.colors.map((color, index) => (
-                          <div key={index} className="mini_colors__item">
-                            <img
-                              src={color.colorImages[0]}
-                              alt={color.colorName}
-                              className="color-image"
-                            />
-                          </div>
-                        ))}
-                      </div>
+                  <p className="product_price"> ${product.price}.00</p>
+
+                  <div className="product_description">
+                    {product.description.length > 110 ? (
+                      <> {product.description.slice(0, 115)}...</>
                     ) : (
-                      ""
+                      <>{product.description}</>
                     )}
                   </div>
-                  <button>
-                    <p>ADD TO BAG</p>
-                    <span>-</span>
-                    <span> ${product.price}</span>
-                  </button>
+                  <Link to={"/details/" + product._id}>Go Details</Link>
                 </div>
               </div>
             </div>

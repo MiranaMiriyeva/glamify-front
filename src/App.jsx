@@ -5,6 +5,7 @@ import MainLayout from "./layout/mainlayout";
 import Services from "./pages/services";
 import Products from "./pages/products";
 import Home from "./pages/home";
+import Details from "./pages/details";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="contact" element={<Services />} />
             <Route path="products" element={<Products />} />
+            <Route path="details/:id" element={<Details />} />
             <Route path="blogs" element={<Blogs />} />
             <Route path="*" element={<NotFound />} />
           </Route>
