@@ -22,7 +22,8 @@
     li a {
       position: relative;
       z-index: 2;
-      color: #fff;
+      color: #ee9ca7;
+      text-shadow: 1px 1px 1px #fff;
       font-size: 20px;
       font-weight: 500;
       text-decoration: none;
@@ -36,7 +37,7 @@
       width: 0;
       z-index: 2;
       height: 1.5px;
-      background-color: #fff;
+      background-color: #ee9ca7;
       transition: width 0.3s ease;
     }
 
@@ -60,7 +61,7 @@
     right: 20px;
     top: 35px;
     svg {
-      color: #fff;
+      color: #ee9ca7;
       font-size: 20px;
     }
   }
@@ -69,11 +70,11 @@
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     ul li a {
-      color: #000;
+      color: #ee9ca7;
     }
 
     div svg {
-      color: #000;
+      color: #ee9ca7;
     }
   }
 }

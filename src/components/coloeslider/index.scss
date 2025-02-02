@@ -1,0 +1,26 @@
+.color-slide {
+  text-align: center;
+  //   padding: 0 10px;
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.color-image {
+  max-width: 100%; /* Renk görsellerinin boyutu */
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+  transform: scale(2);
+  //   margin-left: -90px;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  color: #ee9ca7; /* Navigasyon oklarının rengi */
+  padding: 0 10px;
+  font-size: 20px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #000; /* Sayfalama noktalarının rengi */
+}

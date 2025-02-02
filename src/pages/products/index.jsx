@@ -1,78 +1,134 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./index.scss";
+import RatingStars from "../../components/ratingstarts";
+import ProductColorsSlider from "../../components/coloeslider";
 
-const Products = () => {
+function Products() {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortType, setSortType] = useState("priceDesc");
 
   useEffect(() => {
-    fetch("http://localhost:3000/glamify/products/")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.error("Veri çekme hatası:", err));
+    axios
+      .get("http://localhost:3000/glamify/products/")
+      .then((response) => {
+        setProducts(response.data);
+        const uniqueCategories = [
+          ...new Set(response.data.map((product) => product.category)),
+        ];
+        setCategories(uniqueCategories);
+      })
+      .catch((error) => console.error("API hatası:", error));
   }, []);
 
-  return (
-    <div>
-      {products ? (
-        products.map((product) => {
-          return (
-            <div>
-              <h2>{product.name}</h2>
-              <p>
-                <strong>Kategori:</strong> {product.category}
-              </p>
-              <p>
-                <strong>Boyut:</strong> {product.size}
-              </p>
-              <p>
-                <strong>Fiyat:</strong> ${product.price}
-              </p>
-              <p>
-                <strong>İndirim:</strong> %{product.salePercent}
-              </p>
-              <p>
-                <strong>Puan:</strong> {product.rate} ⭐
-              </p>
-              <p>
-                <strong>Açıklama:</strong> {product.description}
-              </p>
-              <p>
-                <strong>Kullanım:</strong> {product.howToUse}
-              </p>
-              <p>
-                <strong>İçerik:</strong> {product.ingredients}
-              </p>
-              <img
-                src={product.mainImage}
-                alt={product.name}
-                style={{ width: "200px" }}
-              />
+  const filteredProducts = products
+    .filter((product) => {
+      return (
+        (selectedCategory === "" || product.category === selectedCategory) &&
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    })
+    .sort((a, b) => {
+      if (sortType === "priceAsc") return a.price - b.price;
+      if (sortType === "priceDesc") return b.price - a.price;
+      if (sortType === "rateAsc") return a.rate - b.rate;
+      if (sortType === "rateDesc") return b.rate - a.rate;
+      return 0;
+    });
 
-              <h3>Mevcut Renkler:</h3>
-              {product.colors?.map((color) => (
-                <div key={color._id}>
-                  <h4>
-                    {color.colorName}
-                    {color.outOfStock ? "(Stokta Yok)" : "(Stokta Var)"}
-                  </h4>
-                  {color.colorImages.map((image, index) => (
-                    <img
-                      key={index}
-                      src={image}
-                      alt={color.colorName}
-                      style={{ width: "100px", margin: "5px" }}
-                    />
-                  ))}
-                </div>
+  return (
+    <div className="products_page">
+      <div className="products_page__container">
+        <div className="products_page__heading">
+          <div className="products_page__categories">
+            <h2>Categories</h2>
+            <ul>
+              <li onClick={() => setSelectedCategory("")}>All</li>
+              {categories.map((category, index) => (
+                <li key={index} onClick={() => setSelectedCategory(category)}>
+                  {category}
+                </li>
               ))}
+            </ul>
+          </div>
+          <div className="products_page__search_sort">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <select
+              value={sortType}
+              onChange={(e) => setSortType(e.target.value)}
+            >
+              <option value="priceAsc">Price: Lower To Higher </option>
+              <option value="priceDesc">Price: Higher To Lower</option>
+              <option value="rateAsc">Rate: Lower To Higher</option>
+              <option value="rateDesc">Rate: Higher To Lower</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="products_page__items_container">
+          {filteredProducts.map((product) => (
+            <div key={product._id} className="products_page__item">
+              <img src={product.mainImage} alt={product.name} />
+              <div className="products_page__item_details">
+                <div className="products_page__item_details_top">
+                  <h3>{product.name}</h3>
+                  <div>
+                    <RatingStars rate={product.rate} />
+                  </div>
+                </div>
+
+                <div className="products_page__item_details_bottom">
+                  <div className="product-colors">
+                    {product.colors && product.colors.length > 6 ? (
+                      <div className="mini_colors">
+                        {product.colors.slice(0, 6).map((color, index) => (
+                          <div key={index} className="mini_colors__item">
+                            <img
+                              src={color.colorImages[0]}
+                              alt={color.colorName}
+                              className="color-image"
+                            />
+                          </div>
+                        ))}
+                        <span>...</span>
+                      </div>
+                    ) : product.colors && product.colors.length > 1 ? (
+                      <div className="mini_colors">
+                        {product.colors.map((color, index) => (
+                          <div key={index} className="mini_colors__item">
+                            <img
+                              src={color.colorImages[0]}
+                              alt={color.colorName}
+                              className="color-image"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <button>
+                    <p>ADD TO BAG</p>
+                    <span>-</span>
+                    <span> ${product.price}</span>
+                  </button>
+                </div>
+              </div>
             </div>
-          );
-        })
-      ) : (
-        <p>Ürün yükleniyor...</p>
-      )}
+          ))}
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default Products;

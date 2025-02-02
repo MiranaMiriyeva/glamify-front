@@ -1,0 +1,178 @@
+.products_page {
+  padding: 100px 0 50px;
+  .products_page__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+    .products_page__heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      .products_page__categories {
+        h2 {
+          text-transform: uppercase;
+          color: #000;
+          font-size: 20px;
+          margin-bottom: 10px;
+          font-weight: 300;
+        }
+        ul {
+          display: flex;
+          gap: 10px;
+          li {
+            padding: 5px 10px;
+            border: 1px solid #ee9ca7;
+            cursor: pointer;
+            color: #000;
+            font-size: 14px;
+            transition-duration: 300ms;
+          }
+          li:hover {
+            background-color: #ee9ca7;
+            color: #fff;
+          }
+        }
+      }
+      .products_page__search_sort {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        input {
+          padding: 10px;
+          border: none;
+          border-bottom: 1px solid #ee9ca7;
+          outline: none;
+          transition-duration: 300ms;
+        }
+        input:focus {
+          border-bottom: none;
+          outline: 1px solid #ee9ca7;
+        }
+
+        select {
+          padding: 10px;
+          border: none;
+          border-bottom: 1px solid #ee9ca7;
+          outline: none;
+          transition-duration: 300ms;
+        }
+        select:focus {
+          border-bottom: none;
+          outline: 1px solid #ee9ca7;
+        }
+      }
+    }
+    .products_page__items_container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 60px;
+      .products_page__item {
+        padding: 50px 0 0;
+        img {
+          padding: 20px;
+          max-width: 100%;
+        }
+        .products_page__item_details {
+          min-height: 250px;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .products_page__item_details_top {
+            h3 {
+              font-size: 18px;
+              font-weight: 300;
+            }
+          }
+          .products_page__item_details_bottom {
+            .colors-slider {
+              width: 100%;
+              max-width: 350px;
+              margin: 0 auto;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .mini_colors {
+              display: flex;
+              align-items: center;
+              max-width: 100%;
+              img {
+                max-width: 60px;
+                height: auto;
+                object-fit: cover;
+                border-radius: 100%;
+              }
+              span {
+                margin-left: -15px;
+                color: #ee9ca7;
+              }
+            }
+            button {
+              padding: 10px 20px;
+              margin: 20px 0;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 10px;
+              border: 1px solid #ee9ca7;
+              background-color: #fff;
+              color: #ee9ca7;
+              font-size: 16px;
+              transition-duration: 300ms;
+              p {
+                letter-spacing: 3px;
+              }
+
+              span {
+                font-weight: 500;
+              }
+            }
+            button:hover {
+              background-color: #ee9ca7;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.product-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.product-card h3 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.product-card p {
+  margin: 5px 0;
+}
+
+.product-card button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.product-card button:hover {
+  background-color: #0056b3;
+}
