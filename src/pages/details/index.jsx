@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./index.scss";
 import RatingStars from "../../components/ratingstarts";
+import { BasketContext } from "../../context/basket/basketContext";
 
 const Details = () => {
   const { id } = useParams();
@@ -10,6 +11,8 @@ const Details = () => {
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [openAccordion, setOpenAccordion] = useState(null);
+
+  const { addToBasket } = useContext(BasketContext);
 
   useEffect(() => {
     axios
@@ -25,6 +28,14 @@ const Details = () => {
     setOpenAccordion(openAccordion === accordion ? null : accordion);
   };
 
+  // Sepete ekleme fonksiyonu
+  const handleAddToBasket = () => {
+    if (product && selectedColor) {
+      addToBasket(product, selectedColor._id); // Ürünü ve seçili rengin ID'sini sepete ekle
+      alert(`${product.name} (${selectedColor.colorName}) added to basket!`);
+    }
+  };
+
   if (!product) {
     return <div className="loading">Loading...</div>;
   }
@@ -38,7 +49,6 @@ const Details = () => {
             <RatingStars rate={product.rate} />
           </p>
           <p className="product_size">{product.size}</p>
-
           <p className="product_description">{product.description}</p>
           <h3 className="selected_color">{selectedColor.colorName}</h3>
           <div className="color_buttons">
@@ -72,7 +82,6 @@ const Details = () => {
             </div>
           </div>
 
-          {/* Accordion: How To Use */}
           <div
             className={`accordion ${
               openAccordion === "howToUse" ? "open" : ""
@@ -89,10 +98,13 @@ const Details = () => {
               <p>{product.howToUse}</p>
             </div>
           </div>
-          <button className="add_to_basket">Add To Basket</button>
+
+          {/* Sepete Ekle Butonu */}
+          <button className="add_to_basket" onClick={handleAddToBasket}>
+            Add To Basket
+          </button>
         </div>
 
-        {/* Sağ Kısım */}
         <div className="detail_page_rs">
           <div className="main_image">
             <img

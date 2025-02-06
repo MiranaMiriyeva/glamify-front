@@ -47,7 +47,7 @@ const Navbar = () => {
           <Link to="">
             <FaUserCircle />
           </Link>
-          <Link to="">
+          <Link to="/basket">
             <HiOutlineShoppingBag />
           </Link>
         </div>
