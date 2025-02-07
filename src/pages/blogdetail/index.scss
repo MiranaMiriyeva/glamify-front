@@ -1,0 +1,40 @@
+#blog_detail_page {
+  padding: 100px 0 50px;
+  .blog_detail_page_container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    .blog_detail_page_context {
+      background: url("https://preview.colorlib.com/theme/makeupartist/img/about/about-bg.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      h2 {
+        color: #ee9ca7;
+        font-size: 30px;
+        font-weight: 500;
+      }
+      .blog_detail_page_description {
+        color: #444;
+        margin: 10px 0 30px;
+      }
+      .step {
+        h3 {
+          color: #ee9ca7;
+          font-size: 20px;
+          font-weight: 500;
+          margin: 20px 0 5px;
+        }
+        p {
+          color: #444;
+        }
+      }
+    }
+    .blog_detail_page_video {
+      width: 100%;
+      margin: auto;
+    }
+  }
+}

@@ -51,6 +51,7 @@ const Services = () => {
                 </>
               ) : (
                 <>
+                  <hr className="services_hr" />
                   <div className="services_box_images">
                     <img
                       className="services_box_main_image"

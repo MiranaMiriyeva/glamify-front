@@ -9,7 +9,9 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-
+      .services_hr {
+        display: none;
+      }
       .services_box_context {
         background: url("https://preview.colorlib.com/theme/makeupartist/img/about/about-bg.png");
         background-repeat: no-repeat;
@@ -78,7 +80,7 @@
       }
       .services_box_images {
         display: grid;
-        grid-template-columns: 57% 43%;
+        grid-template-columns: 55% 40%;
         gap: 30px;
         align-items: center;
         .services_box_main_image {
@@ -92,6 +94,30 @@
           margin-bottom: 25px;
           object-fit: cover;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  #services {
+    .services_container {
+      padding: 100px 10px 0px;
+      max-width: 400px;
+      .services_box {
+        margin: 0px 0;
+        grid-template-columns: 1fr;
+        .services_hr {
+          display: block;
+          width: 100%;
+          border: 1px solid #ee9ca7;
+          margin: 0px 0 50px;
+        }
+        .services_box_context {
+          margin-bottom: 50px;
+        }
+        .services_box_images {
+          grid-template-columns: 50% 40%;
         }
       }
     }
