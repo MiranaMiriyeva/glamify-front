@@ -6,31 +6,40 @@ import Services from "./pages/services";
 import Products from "./pages/products";
 import Home from "./pages/home";
 import Details from "./pages/details";
-import { BasketProvider } from "./context/basket/basketContext";
 import Basket from "./pages/Basket";
 import BlogDetail from "./pages/blogdetail";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import { AuthProvider } from "./context/auth/authContext";
+import BasketProvider from "./context/basket/basketProvider";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
   return (
     <>
-      <BasketProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<MainLayout />}>
-              <Route index element={<Home />} />
-              <Route path="services" element={<Services />} />
-              <Route path="products" element={<Products />} />
-              <Route path="details/:id" element={<Details />} />
-              <Route path="blogs" element={<Blogs />} />
-              <Route path="blogs/detail/:id" element={<BlogDetail />} />
+      <AuthProvider>
+        <BasketProvider>
+          <HelmetProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<MainLayout />}>
+                  <Route index element={<Home />} />
+                  <Route path="services" element={<Services />} />
+                  <Route path="products" element={<Products />} />
+                  <Route path="details/:id" element={<Details />} />
+                  <Route path="blogs" element={<Blogs />} />
+                  <Route path="blogs/detail/:id" element={<BlogDetail />} />
+                  <Route path="basket" element={<Basket />} />
+                </Route>
+                <Route path="*" element={<NotFound />} />
 
-              <Route path="basket" element={<Basket />} />
-
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </BasketProvider>
+                <Route path="login" element={<Login />} />
+                <Route path="register" element={<Register />} />
+              </Routes>
+            </BrowserRouter>
+          </HelmetProvider>
+        </BasketProvider>
+      </AuthProvider>
     </>
   );
 }

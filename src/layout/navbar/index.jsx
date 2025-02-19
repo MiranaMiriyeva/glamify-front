@@ -33,18 +33,19 @@ const Navbar = () => {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/services">Services</NavLink>
+            <NavLink to="/products">Products</NavLink>
           </li>
+
           <h1>GLAMIFY</h1>
           <li>
-            <NavLink to="/products">Products</NavLink>
+            <NavLink to="/services">Services</NavLink>
           </li>
           <li>
             <NavLink to="/blogs">Blogs</NavLink>
           </li>
         </ul>
         <div>
-          <Link to="">
+          <Link to="/login">
             <FaUserCircle />
           </Link>
           <Link to="/basket">

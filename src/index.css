@@ -14,3 +14,40 @@ li {
 button {
   cursor: pointer;
 }
+.loading {
+  font-size: 18px;
+  color: #ee9ca7;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 50px;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    max-width: 320px;
+  }
+}
+/* ::-webkit-scrollbar-track {
+  background: #ee9ca7;
+} */
+/* Scrollbar'ın genişliğini ayarla */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Scrollbar arka plan rengi */
+::-webkit-scrollbar-track {
+  background: #ffdde1;
+}
+
+/* Scrollbar kaydırma çubuğu */
+::-webkit-scrollbar-thumb {
+  background: #ee9ca7;
+  /* border-radius: 5px; */
+}
+
+/* Scrollbar üzerine gelince rengi değiştir */
+::-webkit-scrollbar-thumb:hover {
+  background: #ff758c;
+}

@@ -1,0 +1,102 @@
+.login_register {
+  padding: 10% 10px 0;
+  background-image: url("https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-us-Library/default/dw28807350/pdp/images/WW-51209YSL/5%20Product%20Image.jpg?sw=2000&sh=813&sm=cut&sfrm=jpg&q=85");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  .login_register_container {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ee9ca7;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.62);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    h2 {
+      margin-bottom: 40px;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 30px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      input {
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ee9ca7;
+        outline: none;
+        transition-duration: 300ms;
+        background-color: transparent;
+      }
+      input:focus {
+        border-bottom: none;
+        outline: 1px solid #ee9ca7;
+      }
+      input::placeholder {
+        color: #000000b5;
+      }
+      .error_msg {
+        color: red;
+      }
+      button {
+        padding: 10px 50px;
+        background: linear-gradient(to right, #ee9ca7, #ffdde1);
+        border: none;
+        font-size: 22px;
+        color: white;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+        margin-top: 20px;
+        max-width: max-content;
+      }
+      button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.15);
+        transition: all 0.5s ease;
+      }
+      button:hover::before {
+        left: 100%;
+      }
+      button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+    .navigator {
+      display: flex;
+      margin: 20px auto;
+      gap: 10px;
+      a {
+        color: black;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 400px) {
+  .login_register {
+    .login_register_container {
+      .navigator {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  }
+}

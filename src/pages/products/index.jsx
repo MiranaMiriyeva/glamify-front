@@ -4,6 +4,7 @@ import "./index.scss";
 import RatingStars from "../../components/ratingstarts";
 import ProductColorsSlider from "../../components/coloeslider";
 import { Link, NavLink } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -11,6 +12,7 @@ function Products() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortType, setSortType] = useState("priceDesc");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -21,6 +23,9 @@ function Products() {
           ...new Set(response.data.map((product) => product.category)),
         ];
         setCategories(uniqueCategories);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1700);
       })
       .catch((error) => console.error("API hatası:", error));
   }, []);
@@ -37,11 +42,25 @@ function Products() {
       if (sortType === "priceDesc") return b.price - a.price;
       if (sortType === "rateAsc") return a.rate - b.rate;
       if (sortType === "rateDesc") return b.rate - a.rate;
+      if (sortType === "bestSellerAsc") return a.sellingCount - b.sellingCount;
       return 0;
     });
+  if (loading) {
+    return (
+      <div className="loading">
+        <img
+          src="https://i.pinimg.com/originals/8f/16/fa/8f16fab10e0c10b1399b0611def6d242.gif"
+          alt=""
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="products_page">
+      <Helmet>
+        <title> Glamify | Products </title>
+      </Helmet>
       <div className="products_page__container">
         <div className="products_page__heading">
           <div className="products_page__categories">
@@ -66,6 +85,7 @@ function Products() {
               value={sortType}
               onChange={(e) => setSortType(e.target.value)}
             >
+              <option value="bestSellerAsc">BestSellers</option>
               <option value="priceAsc">Price: Lower To Higher </option>
               <option value="priceDesc">Price: Higher To Lower</option>
               <option value="rateAsc">Rate: Lower To Higher</option>

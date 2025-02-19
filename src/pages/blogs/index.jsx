@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./index.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import { Helmet } from "react-helmet-async";
+import Aos from "aos";
+import "aos/dist/aos.css";
 const Blogs = () => {
   const [items, setItems] = useState([]);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -32,9 +34,14 @@ const Blogs = () => {
       container.removeEventListener("mousemove", moveCursor);
     };
   }, []);
-
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
     <div id="blogs_page">
+      <Helmet>
+        <title> Glamify | Blogs</title>
+      </Helmet>
       <div className="blogs_page_container">
         <div
           className="blogs_page_items_container"
@@ -44,7 +51,7 @@ const Blogs = () => {
           }}
         >
           {items.map((item) => (
-            <div key={item._id} className="blogs_page_item">
+            <div key={item._id} className="blogs_page_item" data-aos="fade-up">
               <img src={item.mainImage} alt={item.title} />
               <div className="item_details">
                 <div>

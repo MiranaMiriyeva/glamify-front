@@ -556,6 +556,9 @@
         font-size: 13px;
         color: rgb(136, 136, 136);
       }
+      .home_products_box_name {
+        height: 50px;
+      }
       .home_products_box_price {
         color: #fa9a8c;
         font-size: 20px;
@@ -568,7 +571,7 @@
         gap: 10px;
         top: 10px;
         right: 10px;
-        z-index: 2;
+        z-index: 1;
 
         svg {
           padding: 5px;

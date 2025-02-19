@@ -2,25 +2,48 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./index.scss";
 import { FaCheck } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Services = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/glamify/services/")
       .then((res) => {
         setProducts(res.data);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2300);
       })
       .catch((error) => console.error("API error:", error));
   }, []);
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
+  if (loading) {
+    return (
+      <div className="loading">
+        <img
+          src="https://i.pinimg.com/originals/8f/16/fa/8f16fab10e0c10b1399b0611def6d242.gif"
+          alt=""
+        />
+      </div>
+    );
+  }
 
   return (
     <div id="services">
+      <Helmet>
+        <title> Glamify | Services </title>
+      </Helmet>
       {products.map((product, index) => (
         <React.Fragment key={product.id}>
           <div className="services_container">
-            <div className="services_box">
+            <div className="services_box" data-aos="fade-up">
               {index % 2 === 0 ? (
                 <>
                   <div className="services_box_context">
@@ -52,7 +75,7 @@ const Services = () => {
               ) : (
                 <>
                   <hr className="services_hr" />
-                  <div className="services_box_images">
+                  <div className="services_box_images" data-aos="fade-up">
                     <img
                       className="services_box_main_image"
                       src={product.images[0]}
@@ -64,7 +87,7 @@ const Services = () => {
                       alt={product.title}
                     />
                   </div>
-                  <div className="services_box_context">
+                  <div className="services_box_context" data-aos="fade-up">
                     <span>From ${product.price}</span>
                     <h2>{product.title}</h2>
                     <p>{product.description}</p>
@@ -82,9 +105,8 @@ const Services = () => {
             </div>
           </div>
 
-          {/* Rezervasyon Bölümü (2. üründen sonra eklenir) */}
           {index === 1 && (
-            <section id="contact_section">
+            <section id="contact_section" data-aos="fade-up">
               <div className="contact_section_container">
                 <div className="left_side">
                   <h2>BOOK ONLINE FOR</h2>

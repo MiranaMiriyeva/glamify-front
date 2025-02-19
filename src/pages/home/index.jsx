@@ -1,14 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import HLSPlayer from "../../hlsplayer";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { TiHeartOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import Aos from "aos";
+
+import "aos/dist/aos.css";
+
 const videoSrc =
   "https://vod-cmaf.freecaster.com/parfums_christian_dior/9dbed422-0d8a-4934-9de0-750c825eb7c5/oue06ZXNhYrlNDTGgaR2VACu.m3u8";
+
 const Home = () => {
+  const [topSellingProducts, setTopSellingProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchTopSellingProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/glamify/products/");
+        const data = await response.json();
+
+        const sortedProducts = data
+          .sort((a, b) => b.sellingCount - a.sellingCount)
+          .slice(0, 4);
+
+        setTopSellingProducts(sortedProducts);
+      } catch (error) {
+        console.error("Error", error);
+      }
+    };
+
+    fetchTopSellingProducts();
+  }, []);
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
     <>
+      <Helmet>
+        <title> Glamify </title>
+      </Helmet>
       <section id="hero-section">
         <HLSPlayer src={videoSrc} />
         <div className="text animate-slide-in">
@@ -17,7 +49,7 @@ const Home = () => {
           <p>High-Quality Products.</p>
         </div>
       </section>
-      <section id="about-artist">
+      <section id="about-artist" data-aos="fade-up">
         <div className="container">
           <div className="text">
             <h2>The center of attention.</h2>
@@ -37,7 +69,7 @@ const Home = () => {
           />
         </div>
       </section>
-      <section id="best-services">
+      <section id="best-services" data-aos="fade-up">
         <div className="container">
           <h2>BEST MAKEUP SERVICES</h2>
           <p>Professional makeup</p>
@@ -90,7 +122,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section id="gallery">
+      <section id="gallery" data-aos="fade-up">
         {/* <h2>Check out our gallery</h2> */}
         <div className="image-boxes">
           <img
@@ -130,78 +162,38 @@ const Home = () => {
           />
         </div>
       </section>
-      <section id="home_products_section">
+      <section id="home_products_section" data-aos="fade-up">
         <div className="home_products_section_container">
           <h2>BEAUTY PRODUCTS</h2>
           <p className="bp_heading">Beauty products</p>
           <div className="home_products_box_container">
-            <div className="home_products_box">
-              <img src="https://i.imgur.com/480rSE8.png" alt="" />
-              <p className="home_products_box_category">Lipstick</p>
-              <p className="home_products_box_name">KIKO Creamy Lipstick</p>
-              <p className="home_products_box_price">$25.0</p>
-              <div className="home_products_box_icons">
-                <HiOutlineShoppingBag />
-                <TiHeartOutline />
+            {topSellingProducts.map((product) => (
+              <div key={product._id} className="home_products_box">
+                <img src={product.mainImage} alt={product.name} />
+                <p className="home_products_box_category">{product.category}</p>
+                <p className="home_products_box_name">{product.name}</p>
+                <p className="home_products_box_price">${product.price}</p>
+                <Link
+                  to={"/details/" + product._id}
+                  className="home_products_box_icons"
+                >
+                  <HiOutlineShoppingBag />
+                </Link>
               </div>
-            </div>
-
-            <div className="home_products_box">
-              <img src="https://i.imgur.com/Iv99fLK.png" alt="" />
-              <p className="home_products_box_category">Palette</p>
-              <p className="home_products_box_name">KIKO Eyeshadow Plaette</p>
-              <p className="home_products_box_price">$20.0</p>
-              <div className="home_products_box_icons">
-                <HiOutlineShoppingBag />
-                <TiHeartOutline />
-              </div>
-            </div>
-
-            <div className="home_products_box">
-              <img
-                src="https://www.kikocosmetics.com/_next/image/?url=https%3A%2F%2Fassets.joqhl8w6.on-eva.io%2Fblob%2F18c0d6b8-7ae7-4cfe-8066-4c80ac73e944&w=384&q=75"
-                alt=""
-              />
-              <p className="home_products_box_category">Mascara</p>
-              <p className="home_products_box_name">KIKO Volume Mascara</p>
-              <p className="home_products_box_price">$18.0</p>
-              <div className="home_products_box_icons">
-                <HiOutlineShoppingBag />
-                <TiHeartOutline />
-              </div>
-            </div>
-
-            <div className="home_products_box">
-              <img
-                src="https://www.kikocosmetics.com/_next/image/?url=https%3A%2F%2Fassets.joqhl8w6.on-eva.io%2Fblob%2Fbe1fa520-7b5f-325c-64fe-8be7b643d95f&w=384&q=75"
-                alt=""
-              />
-              <p className="home_products_box_category">Foundation</p>
-              <p className="home_products_box_name">KIKO Powder Foundation</p>
-              <p className="home_products_box_price">$20.0</p>
-              <div className="home_products_box_icons">
-                <HiOutlineShoppingBag />
-                <TiHeartOutline />
-              </div>
-            </div>
+            ))}
           </div>
           <div className="home_products_section_ending">
-            <Link to={"/shop"}>VIEW ALL PRODUCTS</Link>
+            <Link to={"/products"}>VIEW ALL PRODUCTS</Link>
             <hr />
           </div>
         </div>
       </section>
-      <section id="tips_section">
+      <section id="tips_section" data-aos="fade-up">
         <div className="tips_section_container">
           <h2>MAKEUP ARTIST TIPS</h2>
           <p className="tips_heading">Makeup artist tips</p>
           <div className="tips_section_box_container">
-            <Link
-              className="tips_section_box"
-              to={
-                "https://www.youtube.com/watch?v=H01k32xOb9s&pp=ygULbWFrZXVwIHRpcHM%3D"
-              }
-            >
+            <Link className="tips_section_box" to={"/blogs"}>
               <img
                 src="https://i.pinimg.com/564x/c6/09/a8/c609a854e42f5abcd6b28b1e121eb363.jpg"
                 alt=""
@@ -212,12 +204,7 @@ const Home = () => {
                 <div className="tips_section_box_date">Jul 5, 2024</div>
               </div>
             </Link>
-            <Link
-              className="tips_section_box"
-              to={
-                "https://www.youtube.com/watch?v=H01k32xOb9s&pp=ygULbWFrZXVwIHRpcHM%3D"
-              }
-            >
+            <Link className="tips_section_box" to={"/blogs"}>
               <img
                 src="https://i.pinimg.com/564x/e4/f2/92/e4f292a5e60b32823fe9d74d23eaa40c.jpg"
                 alt=""
@@ -229,12 +216,7 @@ const Home = () => {
               </div>
             </Link>
 
-            <Link
-              className="tips_section_box"
-              to={
-                "https://www.youtube.com/watch?v=H01k32xOb9s&pp=ygULbWFrZXVwIHRpcHM%3D"
-              }
-            >
+            <Link className="tips_section_box" to={"/blogs"}>
               <img
                 src="https://i.pinimg.com/564x/e4/0d/64/e40d64037ff9995be5608d4e11d389f0.jpg"
                 alt=""
@@ -248,7 +230,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section id="contact_section">
+      <section id="contact_section" data-aos="fade-up">
         <div className="contact_section_container">
           <div className="left_side">
             <h2>BOOK ONLINE FOR</h2>

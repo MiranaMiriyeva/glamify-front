@@ -12,7 +12,6 @@
 
 .detail_page_ls {
   padding: 20px;
-  //   background-color: white;
   border-radius: 10px;
   margin-right: 20px;
 
@@ -94,7 +93,6 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px;
-      //   background-color: #f8e9e9;
       border: none;
       border-bottom: 1px solid #ee9ca7;
 
@@ -125,12 +123,12 @@
 
     &.open {
       .accordion_content {
-        max-height: 500px; /* İçeriğin maksimum yüksekliği */
+        max-height: 500px;
         padding: 10px;
       }
 
       .accordion_header span {
-        transform: rotate(180deg); /* Ok simgesini döndür */
+        transform: rotate(180deg);
       }
     }
   }
@@ -138,7 +136,6 @@
 
 .detail_page_rs {
   padding: 20px;
-  //   background-color: white;
   position: relative;
 
   .main_image img {
@@ -174,9 +171,28 @@
   }
 }
 
-.loading {
-  font-size: 18px;
-  color: #ee9ca7;
-  text-align: center;
-  margin-top: 50px;
+@media only screen and (max-width: 600px) {
+  .detail_page {
+    padding: 60px 0 20px;
+
+    .detail_page_container {
+      max-width: 320px;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 100px;
+    }
+  }
+  .detail_page_rs {
+    .thumbnail_images {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin: auto;
+      margin-top: 20px;
+      position: absolute;
+      // bottom: 50px;
+      top: 90%;
+      right: 0px;
+    }
+  }
 }

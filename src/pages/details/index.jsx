@@ -3,7 +3,9 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./index.scss";
 import RatingStars from "../../components/ratingstarts";
-import { BasketContext } from "../../context/basket/basketContext";
+import BasketContext from "../../context/basket/basketContext";
+import AuthContext from "../../context/auth/authContext";
+import { Helmet } from "react-helmet-async";
 
 const Details = () => {
   const { id } = useParams();
@@ -11,8 +13,10 @@ const Details = () => {
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [openAccordion, setOpenAccordion] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const { addToBasket } = useContext(BasketContext);
+  const { isAuth, isLogin, setIsLogin } = useContext(AuthContext);
 
   useEffect(() => {
     axios
@@ -20,6 +24,9 @@ const Details = () => {
       .then((response) => {
         setProduct(response.data);
         setSelectedColor(response.data.colors[0]);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2300);
       })
       .catch((error) => console.error("API error:", error));
   }, [id]);
@@ -28,20 +35,45 @@ const Details = () => {
     setOpenAccordion(openAccordion === accordion ? null : accordion);
   };
 
-  // Sepete ekleme fonksiyonu
   const handleAddToBasket = () => {
+    console.log(isLogin);
+
+    if (isLogin == false) {
+      console.log("Please login to add items to your basket.");
+      return;
+    }
+
     if (product && selectedColor) {
-      addToBasket(product, selectedColor._id); // Ürünü ve seçili rengin ID'sini sepete ekle
+      const basketItem = {
+        productId: product._id,
+        name: product.name,
+        mainImage: product.mainImage,
+        price: product.price,
+        colorName: selectedColor.colorName,
+        colorImages: selectedColor.colorImages,
+      };
+
+      addToBasket(basketItem);
       alert(`${product.name} (${selectedColor.colorName}) added to basket!`);
     }
   };
 
-  if (!product) {
-    return <div className="loading">Loading...</div>;
+  if (loading) {
+    return (
+      <div className="loading">
+        <img
+          src="https://i.pinimg.com/originals/8f/16/fa/8f16fab10e0c10b1399b0611def6d242.gif"
+          alt=""
+        />
+      </div>
+    );
   }
 
   return (
     <div className="detail_page">
+      <Helmet>
+        <title> Glamify | {product.name}</title>
+      </Helmet>
       <div className="detail_page_container">
         <div className="detail_page_ls">
           <h1 className="product_name">{product.name}</h1>

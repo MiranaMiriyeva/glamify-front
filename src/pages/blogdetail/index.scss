@@ -38,3 +38,13 @@
     }
   }
 }
+@media only screen and (max-width: 1000px) {
+  #blog_detail_page {
+    padding: 50px 0 50px;
+    .blog_detail_page_container {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 30px;
+    }
+  }
+}

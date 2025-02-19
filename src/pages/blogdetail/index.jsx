@@ -2,26 +2,41 @@ import React, { useEffect, useState } from "react";
 import "./index.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const BlogDetail = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/glamify/blogs/${id}`)
       .then((response) => {
         setBlog(response.data);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2300);
       })
       .catch((error) => console.error("API error:", error));
   }, [id]);
 
-  if (!blog) {
-    return <div>Loading...</div>; // veya bir yükleme spinner'ı göster
+  if (loading) {
+    return (
+      <div className="loading">
+        <img
+          src="https://i.pinimg.com/originals/8f/16/fa/8f16fab10e0c10b1399b0611def6d242.gif"
+          alt=""
+        />
+      </div>
+    );
   }
 
   return (
     <>
+      <Helmet>
+        <title> Glamify | {blog.title}</title>
+      </Helmet>
       <div id="blog_detail_page">
         <div className="blog_detail_page_container">
           <div className="blog_detail_page_context">
