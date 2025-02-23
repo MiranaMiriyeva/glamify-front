@@ -12,7 +12,7 @@ const Basket = () => {
   return (
     <div className="basket_page">
       <Helmet>
-        <title> Glamify | Basket</title>
+        <title>Glamify | Basket</title>
       </Helmet>
       <div className="basket_page_container">
         {basket.length === 0 ? (
@@ -21,46 +21,52 @@ const Basket = () => {
           <div className="basket_container">
             <table className="basket_table">
               <tbody>
-                {basket.map((item, index) => (
-                  <React.Fragment key={index}>
+                {basket.map((product, productIndex) => (
+                  <React.Fragment key={product.productId}>
                     <tr className="product_row">
-                      <td rowSpan={item.colors.length + 1}>
+                      <td rowSpan={product.addedColors.length + 1}>
                         <div className="product_info">
-                          <img src={item.mainImage} alt={item.name} />
-                          <p className="item_name">{item.name}</p>
+                          <img src={product.mainImage} alt={product.name} />
+                          <p className="item_name">{product.name}</p>
                         </div>
                       </td>
                     </tr>
-                    {item.colors.map((color, colorIndex) => (
+                    {product.addedColors.map((color, colorIndex) => (
                       <tr key={colorIndex} className="color_row">
                         <td>
                           <div className="color_info">
+                            <img
+                              src={color.colorImage}
+                              alt={`${product.name} - ${color.colorName}`}
+                            />
                             <span>{color.colorName}</span>
                           </div>
                         </td>
                         <td>
                           <div className="quantity_actions">
                             <button
-                              onClick={(e) =>
-                                decrement(item._id, color.colorName, e)
+                              onClick={() =>
+                                decrement(product, color.colorName)
                               }
                             >
                               -
                             </button>
                             <span>{color.quantity}</span>
                             <button
-                              onClick={(e) =>
-                                addToBasket(item._id, color.colorName, e)
+                              onClick={() =>
+                                addToBasket(product, color.colorName)
                               }
                             >
                               +
                             </button>
                           </div>
                         </td>
-                        <td>${item.price * color.quantity}</td>
+                        <td>${(product.price * color.quantity).toFixed(2)}</td>
                         <td>
                           <button
-                            onClick={() => removeFromBasket(item.productId)}
+                            onClick={() =>
+                              removeFromBasket(product, color.colorName)
+                            }
                             className="remove_button"
                           >
                             Remove
@@ -78,7 +84,7 @@ const Basket = () => {
                 <div className="checkout_details">
                   <div className="checkout_row">
                     <span>Subtotal</span>
-                    {/* <span>${totalPrice.toFixed(2)}</span> */}
+                    <span>${total.toFixed(2)}</span>
                   </div>
                   <div className="checkout_row">
                     <span>Shipping</span>
@@ -90,14 +96,16 @@ const Basket = () => {
                   </div>
                   <div className="checkout_row total">
                     <span>Total</span>
-                    {/* <span>${(totalPrice + 5).toFixed(2)}</span> */}
+                    <span>${(total + 5).toFixed(2)}</span>
                   </div>
-                  <form className="checkout_row promo_code">
+                  <form
+                    className="checkout_row promo_code"
+                    onSubmit={(e) => e.preventDefault()}
+                  >
                     <input type="text" placeholder="Enter promo Code" />
-                    <button>Add</button>
+                    <button type="submit">Add</button>
                   </form>
                 </div>
-
                 <button className="checkout_button">Proceed to Checkout</button>
               </div>
             </div>

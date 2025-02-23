@@ -36,9 +36,9 @@ const Details = () => {
   };
 
   const handleAddToBasket = () => {
-    console.log(isLogin);
+    console.log(isAuth);
 
-    if (isLogin == false) {
+    if (isAuth == false) {
       console.log("Please login to add items to your basket.");
       return;
     }
