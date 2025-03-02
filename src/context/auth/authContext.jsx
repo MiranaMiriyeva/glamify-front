@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
     "isLogin",
     isAuth ? true : false
   );
+  console.log(isAuth);
 
   return (
     <AuthContext.Provider value={{ isAuth, isLogin, setIsLogin }}>

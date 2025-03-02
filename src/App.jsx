@@ -13,6 +13,7 @@ import Register from "./pages/Register";
 import { AuthProvider } from "./context/auth/authContext";
 import BasketProvider from "./context/basket/basketProvider";
 import { HelmetProvider } from "react-helmet-async";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
               </Routes>
+              <ToastContainer position="top-right" autoClose={3000} />
             </BrowserRouter>
           </HelmetProvider>
         </BasketProvider>

@@ -6,6 +6,8 @@ import RatingStars from "../../components/ratingstarts";
 import BasketContext from "../../context/basket/basketContext";
 import AuthContext from "../../context/auth/authContext";
 import { Helmet } from "react-helmet-async";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Details = () => {
   const { id } = useParams();
@@ -36,10 +38,10 @@ const Details = () => {
   };
 
   const handleAddToBasket = () => {
-    console.log(isAuth);
+    console.log(isLogin);
 
-    if (isAuth == false) {
-      console.log("Please login to add items to your basket.");
+    if (isLogin == false) {
+      toast.error("Please login to add items to your basket.");
       return;
     }
 
@@ -54,7 +56,8 @@ const Details = () => {
       };
 
       addToBasket(basketItem);
-      alert(`${product.name} (${selectedColor.colorName}) added to basket!`);
+      toast(`${product.name} (${selectedColor.colorName}) added to basket!`);
+      // alert(`${product.name} (${selectedColor.colorName}) added to basket!`);
     }
   };
 

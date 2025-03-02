@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./index.scss";
 import { Link, NavLink } from "react-router-dom";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FaUserCircle } from "react-icons/fa";
 import { RiMenu2Fill } from "react-icons/ri";
 import { IoCloseSharp } from "react-icons/io5";
+import { TbLogout } from "react-icons/tb";
+import AuthContext from "../../context/auth/authContext";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setisOpen] = useState(false);
+  const { isAuth, isLogin, setIsLogin } = useContext(AuthContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +28,25 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
+  function sweatAlert() {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Log Out!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Log Out!",
+          icon: "success",
+        });
+        setIsLogin(false);
+      }
+    });
+  }
   return (
     <>
       <nav className={isScrolled ? "scrolled desktop-nav" : "desktop-nav"}>
@@ -45,9 +67,14 @@ const Navbar = () => {
           </li>
         </ul>
         <div>
-          <Link to="/login">
-            <FaUserCircle />
-          </Link>
+          {isLogin ? (
+            <TbLogout onClick={() => sweatAlert()} />
+          ) : (
+            <Link to="/login">
+              <FaUserCircle />
+            </Link>
+          )}
+
           <Link to="/basket">
             <HiOutlineShoppingBag />
           </Link>

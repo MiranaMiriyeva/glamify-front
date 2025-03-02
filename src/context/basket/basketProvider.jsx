@@ -26,8 +26,11 @@ const BasketProvider = ({ children }) => {
     } else {
       const product = basket[productIndex];
       const colorIndex = product.addedColors.findIndex(
-        (color) => color.colorName === colorName
+        (color) => color.colorName === item.colorName
       );
+      console.log(product.addedColors);
+      console.log(item.colorName);
+
       if (colorIndex === -1) {
         product.addedColors.push({
           colorName: item.colorName,
@@ -35,6 +38,8 @@ const BasketProvider = ({ children }) => {
           quantity: 1,
         });
       } else {
+        console.log(product.addedColors[colorIndex]);
+
         product.addedColors[colorIndex].quantity++;
       }
       const newBasket = [...basket];
@@ -69,6 +74,24 @@ const BasketProvider = ({ children }) => {
     newBasket[productIndex] = product;
     setBasket(newBasket);
   };
+  const increment = (item, colorName) => {
+    const productIndex = basket.findIndex(
+      (product) => product.productId === item.productId
+    );
+    if (productIndex === -1) return;
+
+    const product = basket[productIndex];
+    const colorIndex = product.addedColors.findIndex(
+      (color) => color.colorName === colorName
+    );
+    if (colorIndex === -1) return;
+
+    product.addedColors[colorIndex].quantity++;
+
+    const newBasket = [...basket];
+    newBasket[productIndex] = product;
+    setBasket(newBasket);
+  };
 
   const removeFromBasket = (item, colorName) => {
     const productIndex = basket.findIndex(
@@ -99,7 +122,14 @@ const BasketProvider = ({ children }) => {
   }, 0);
   return (
     <BasketContext.Provider
-      value={{ basket, addToBasket, decrement, removeFromBasket, total }}
+      value={{
+        basket,
+        addToBasket,
+        increment,
+        decrement,
+        removeFromBasket,
+        total,
+      }}
     >
       {children}
     </BasketContext.Provider>

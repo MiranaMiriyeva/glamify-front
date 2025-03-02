@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import "./index.scss";
 import AuthContext from "../../context/auth/authContext";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { isAuth, isLogin, setIsLogin } = useContext(AuthContext);
@@ -27,14 +28,14 @@ const Login = () => {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("galmifytoken", data.token);
-        alert("Successfully logged in");
+        toast("Successfully logged in");
         navigate("/products");
       } else {
-        alert(data.error || "Login failed");
+        toast.error(data.error || "Login failed");
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("An error occurred during login");
+      toast.error("An error occurred during login");
     }
   };
 

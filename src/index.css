@@ -51,3 +51,6 @@ button {
 ::-webkit-scrollbar-thumb:hover {
   background: #ff758c;
 }
+.Toastify__progress-bar {
+  background: #ee9ca7 !important;
+}

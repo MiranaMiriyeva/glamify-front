@@ -4,6 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "../Login/index.scss";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -24,14 +25,14 @@ const Register = () => {
 
       const data = await response.json(); // Response'u JSON'a çevir
       if (response.ok) {
-        alert("Successfully registered");
+        toast("Successfully registered");
         navigate("/login"); // Login sayfasına yönlendir
       } else {
-        alert(data.error || "Registration failed");
+        toast.error(data.error || "Registration failed");
       }
     } catch (error) {
       console.error("Registration error:", error);
-      alert("An error occurred during registration");
+      toast.error("An error occurred during registration");
     }
   };
 
