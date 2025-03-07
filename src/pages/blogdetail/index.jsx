@@ -11,7 +11,7 @@ const BlogDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/glamify/blogs/${id}`)
+      .get(`https://glamify-back.onrender.com/blogs/${id}`)
       .then((response) => {
         setBlog(response.data);
         setTimeout(() => {

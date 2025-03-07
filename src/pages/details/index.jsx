@@ -22,7 +22,7 @@ const Details = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/glamify/products/${id}`)
+      .get(`https://glamify-back.onrender.com/products/${id}`)
       .then((response) => {
         setProduct(response.data);
         setSelectedColor(response.data.colors[0]);

@@ -12,7 +12,7 @@ const Services = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/glamify/services/")
+      .get("https://glamify-back.onrender.com/services/")
       .then((res) => {
         setProducts(res.data);
         setTimeout(() => {

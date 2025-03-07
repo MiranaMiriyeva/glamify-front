@@ -60,14 +60,17 @@ const Basket = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/glamify/checkout", {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(checkoutData),
-      });
+      const response = await fetch(
+        "https://glamify-back.onrender.com/checkout",
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+          body: JSON.stringify(checkoutData),
+        }
+      );
 
       const data = await response.json();
       toast("Order completed successfully!");

@@ -16,7 +16,7 @@ function Products() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/glamify/products/")
+      .get("https://glamify-back.onrender.com/products/")
       .then((response) => {
         setProducts(response.data);
         const uniqueCategories = [

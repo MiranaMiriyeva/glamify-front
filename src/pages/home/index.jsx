@@ -18,7 +18,9 @@ const Home = () => {
   useEffect(() => {
     const fetchTopSellingProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3000/glamify/products/");
+        const response = await fetch(
+          "https://glamify-back.onrender.com/products/"
+        );
         const data = await response.json();
 
         const sortedProducts = data

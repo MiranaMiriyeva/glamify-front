@@ -32,11 +32,17 @@ function App() {
                   <Route path="blogs/detail/:id" element={<BlogDetail />} />
                   <Route path="basket" element={<Basket />} />
                 </Route>
+                {/* <Route path="/admin" element={<AdminNav />}>
+                  <Route index element={<Admin />} />
+                  <Route path="addnew" element={<AdminAdd />} />
+                  <Route path="details/:id" element={<AdminDetail />} />
+                </Route> */}
                 <Route path="*" element={<NotFound />} />
 
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
               </Routes>
+
               <ToastContainer position="top-right" autoClose={3000} />
             </BrowserRouter>
           </HelmetProvider>

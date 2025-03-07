@@ -14,7 +14,7 @@ const Login = () => {
   const handleLogin = async (values) => {
     try {
       const response = await fetch(
-        "http://localhost:3000/glamify/users/login",
+        "https://glamify-back.onrender.com/users/login",
         {
           headers: {
             Accept: "application/json",

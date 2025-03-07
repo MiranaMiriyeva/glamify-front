@@ -12,7 +12,7 @@ const Register = () => {
   const handleRegister = async (values) => {
     try {
       const response = await fetch(
-        "http://localhost:3000/glamify/users/register",
+        "https://glamify-back.onrender.com/users/register",
         {
           headers: {
             Accept: "application/json",
