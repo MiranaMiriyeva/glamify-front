@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: glamify
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    headers:
+      - name: "Content-Type"
+        value: "text/javascript"
+        glob: "**/*.js"
