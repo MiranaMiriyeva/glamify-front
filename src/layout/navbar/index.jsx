@@ -83,25 +83,33 @@ const Navbar = () => {
       <nav className={isScrolled ? "scrolled mobile-nav" : "mobile-nav"}>
         <ul className={isOpen ? "sidebar sidebar-open" : "sidebar"}>
           <li>
-            <Link to="">
+            <Link to="/login" onClick={() => setisOpen(false)}>
               <FaUserCircle />
             </Link>
-            <Link to="">
+            <Link to="/basket" onClick={() => setisOpen(false)}>
               <HiOutlineShoppingBag />
             </Link>
           </li>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/" onClick={() => setisOpen(false)}>
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/services">Services</NavLink>
+            <NavLink to="/services" onClick={() => setisOpen(false)}>
+              Services
+            </NavLink>
           </li>
 
           <li>
-            <NavLink to="/products">Products</NavLink>
+            <NavLink to="/products" onClick={() => setisOpen(false)}>
+              Products
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/blogs">Blogs</NavLink>
+            <NavLink to="/blogs" onClick={() => setisOpen(false)}>
+              Blogs
+            </NavLink>
           </li>
         </ul>
         {isOpen ? (

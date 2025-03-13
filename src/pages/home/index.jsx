@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet-async";
 import Aos from "aos";
 
 import "aos/dist/aos.css";
+import ContactSection from "../../components/contactsection";
 
 const videoSrc =
   "https://vod-cmaf.freecaster.com/parfums_christian_dior/9dbed422-0d8a-4934-9de0-750c825eb7c5/oue06ZXNhYrlNDTGgaR2VACu.m3u8";
@@ -232,33 +233,8 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section id="contact_section" data-aos="fade-up">
-        <div className="contact_section_container">
-          <div className="left_side">
-            <h2>BOOK ONLINE FOR</h2>
-            <span>10% DISCOUNT</span>
-          </div>
-          <div className="right_side">
-            <h2>GET A QUOTE</h2>
-            <form>
-              <div>
-                <input type="text" placeholder="Name" required />
-                <input type="number" placeholder="Phone number" required />
-              </div>
-              <div>
-                <input type="email" placeholder="Email" required />
-                <select required>
-                  <option value="Makeup">Makeup</option>
-                  <option value="Hair">Hair</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <textarea placeholder="Your message"></textarea>
-              <button className="book_btn">Book</button>
-            </form>
-          </div>
-        </div>
-      </section>
+      
+      <ContactSection />
     </>
   );
 };
