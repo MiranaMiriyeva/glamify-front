@@ -23,10 +23,10 @@ const Register = () => {
         }
       );
 
-      const data = await response.json(); // Response'u JSON'a çevir
+      const data = await response.json();
       if (response.ok) {
         toast("Successfully registered");
-        navigate("/login"); // Login sayfasına yönlendir
+        navigate("/login");
       } else {
         toast.error(data.error || "Registration failed");
       }

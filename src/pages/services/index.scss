@@ -43,6 +43,9 @@
           margin: 0 auto;
           margin-top: 20px;
           max-width: max-content;
+          a {
+            color: #fff;
+          }
         }
         button::before {
           content: "";

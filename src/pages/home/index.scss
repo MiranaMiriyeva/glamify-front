@@ -119,6 +119,9 @@
         transition: all 0.3s ease;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         margin-top: 20px;
+        a {
+          color: #fff;
+        }
       }
       button::before {
         content: "";
@@ -755,7 +758,6 @@
     }
   }
 }
-
 
 @keyframes slide-in {
   to {

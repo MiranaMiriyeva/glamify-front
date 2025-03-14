@@ -58,7 +58,9 @@ const Services = () => {
                         </div>
                       ))}
                     </div>
-                    <button>GET A QUOTE</button>
+                    <button>
+                      <a href="#contact_section">GET A QUOTE</a>
+                    </button>
                   </div>
                   <div className="services_box_images">
                     <img
@@ -99,14 +101,20 @@ const Services = () => {
                         </div>
                       ))}
                     </div>
-                    <button>GET A QUOTE</button>
+                    <button>
+                      <a href="#contact_section">GET A QUOTE</a>
+                    </button>
                   </div>
                 </>
               )}
             </div>
           </div>
 
-          {index === 1 && <ContactSection />}
+          {index === 1 && (
+            <section id="contact_section">
+              <ContactSection />
+            </section>
+          )}
         </React.Fragment>
       ))}
     </div>

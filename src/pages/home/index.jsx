@@ -63,7 +63,9 @@ const Home = () => {
               obsession after four years of art school where I learned to master
               the airbrush technique.
             </p>
-            <button>CONTACT US</button>
+            <button>
+              <a href="#contact_section">CONTACT US</a>
+            </button>
           </div>
 
           <img
@@ -233,8 +235,11 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
-      <ContactSection />
+
+      <section id="contact_section">
+    
+        <ContactSection />
+      </section>
     </>
   );
 };

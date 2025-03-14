@@ -25,7 +25,7 @@ const HLSPlayer = ({ src, autoplay = true, controls = true }) => {
     }
   }, [src, autoplay]);
 
-  return <video ref={videoRef} autoPlay loop muted />;
+  return <video ref={videoRef} autoPlay loop muted playsInline />;
 };
 
 export default HLSPlayer;

@@ -52,6 +52,8 @@ const ContactSection = () => {
                 onChange={(e) => setDate(e.target.value)}
               />
               <select
+                className="form-select"
+                aria-label="Default select example"
                 value={service}
                 onChange={(e) => setService(e.target.value)}
                 required
@@ -59,7 +61,7 @@ const ContactSection = () => {
                 <option value="Daily Makeup">Daily Makeup</option>
                 <option value="Bridal Makeup">Bridal Makeup</option>
                 <option value="Event Makeup">Event Makeup</option>
-                <option value="Creative Makeup<">Creative Makeup</option>
+                <option value="Creative Makeup">Creative Makeup</option>
                 <option value="Other">Other</option>
               </select>
             </div>

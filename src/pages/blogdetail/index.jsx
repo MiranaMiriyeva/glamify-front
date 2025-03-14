@@ -57,6 +57,7 @@ const BlogDetail = () => {
             loop
             controls
             muted
+            playsInline
           ></video>
         </div>
       </div>
