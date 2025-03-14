@@ -90,6 +90,11 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <hr />
+        <div className="footer_bottom">
+          © {new Date().getFullYear()} Glamify. All rights reserved. This
+          website is made with <span>🩷</span> by <span>Mirana</span>
+        </div>
       </footer>
     </>
   );

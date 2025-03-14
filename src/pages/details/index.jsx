@@ -57,7 +57,6 @@ const Details = () => {
 
       addToBasket(basketItem);
       toast(`${product.name} (${selectedColor.colorName}) added to basket!`);
-      // alert(`${product.name} (${selectedColor.colorName}) added to basket!`);
     }
   };
 
@@ -134,7 +133,6 @@ const Details = () => {
             </div>
           </div>
 
-          {/* Sepete Ekle Butonu */}
           <button className="add_to_basket" onClick={handleAddToBasket}>
             Add To Basket
           </button>

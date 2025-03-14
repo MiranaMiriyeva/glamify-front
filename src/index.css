@@ -29,26 +29,27 @@ button {
     max-width: 320px;
   }
 }
-/* ::-webkit-scrollbar-track {
-  background: #ee9ca7;
-} */
-/* Scrollbar'ın genişliğini ayarla */
+
 ::-webkit-scrollbar {
   width: 15px;
 }
 
-/* Scrollbar arka plan rengi */
 ::-webkit-scrollbar-track {
   background: #ffdde1;
 }
-
-/* Scrollbar kaydırma çubuğu */
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 16px;
+}
 ::-webkit-scrollbar-thumb {
   background: #ee9ca7;
-  /* border-radius: 5px; */
 }
 
-/* Scrollbar üzerine gelince rengi değiştir */
 ::-webkit-scrollbar-thumb:hover {
   background: #ff758c;
 }

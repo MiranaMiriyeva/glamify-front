@@ -1,6 +1,12 @@
 footer {
   background-color: #f8f2f2;
-  padding: 40px 0;
+  padding: 40px 0 0;
+  hr {
+    display: block;
+    width: 100%;
+    border: 1px solid #ee9ca7;
+    height: 2px;
+  }
 }
 
 .container {
@@ -83,6 +89,15 @@ ul {
   color: #fff;
   background-color: #ee9ca7;
   border: none;
+}
+.footer_bottom {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0 20px;
+  span {
+    color: #ee9ca7;
+  }
 }
 
 @media (max-width: 767px) {

@@ -2,8 +2,8 @@ import React from "react";
 import "./index.scss";
 
 const RatingStars = ({ rate }) => {
-  const totalStars = 5; // Toplam yıldız sayısı
-  const filledStars = Math.round(rate); // Puanı yuvarlayarak dolu yıldız sayısını belirle
+  const totalStars = 5;
+  const filledStars = Math.round(rate);
 
   return (
     <div className="rating-stars">
