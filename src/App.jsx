@@ -14,6 +14,7 @@ import { AuthProvider } from "./context/auth/authContext";
 import BasketProvider from "./context/basket/basketProvider";
 import { HelmetProvider } from "react-helmet-async";
 import { ToastContainer } from "react-toastify";
+import ScrollToTop from "../scrolltotop";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <BasketProvider>
           <HelmetProvider>
             <BrowserRouter>
+              <ScrollToTop />
               <Routes>
                 <Route path="/" element={<MainLayout />}>
                   <Route index element={<Home />} />
